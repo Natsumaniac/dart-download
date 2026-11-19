@@ -1,44 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DART App</title>
-
-    <script>
-        const androidURL =
-            "https://play.google.com/store/apps/details?id=com.twowaydigitalmedia.dart";
-
-        const iosURL =
-            "https://apps.apple.com/ng/app/dart-food-bird/id6778033966";
-
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-        // Android
-        if (/android/i.test(userAgent)) {
-            window.location.replace(androidURL);
-        }
-
-        // iPhone / iPad / iPod
-        else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-            window.location.replace(iosURL);
-        }
-
-        // Other devices
-        else {
-            document.addEventListener("DOMContentLoaded", function () {
-                document.getElementById("message").innerHTML =
-                    "Please scan this QR code using your Android or iPhone.";
-            });
-        }
-    </script>
+    <title>DART App - Download Now</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 60px 20px;
+            background: #ffffff;
         }
 
         h1 {
@@ -47,17 +21,68 @@
 
         p {
             font-size: 18px;
+            color: #555;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            background: #263238;
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>DART App</h1>
+    <h1>DART SUPER APP</h1>
 
-    <p id="message">
-        Redirecting you to the DART App...
-    </p>
+    <p id="message">Redirecting you to DART...</p>
+
+    <div id="buttons" style="display:none;">
+        <a class="download-btn"
+           href="https://play.google.com/store/apps/details?id=com.twowaydigitalmedia.dart">
+           Download for Android
+        </a>
+
+        <a class="download-btn"
+           href="https://apps.apple.com/ng/app/dart-food-bird/id6778033966">
+           Download for iPhone
+        </a>
+    </div>
+
+    <script>
+        const androidURL =
+            "https://play.google.com/store/apps/details?id=com.twowaydigitalmedia.dart";
+
+        const iosURL =
+            "https://apps.apple.com/ng/app/dart-food-bird/id6778033966";
+
+        const userAgent = navigator.userAgent || navigator.vendor || "";
+
+        const isAndroid = /android/i.test(userAgent);
+
+        const isIOS = /iPhone|iPad|iPod/i.test(userAgent) ||
+            (navigator.platform === "MacIntel" &&
+             navigator.maxTouchPoints > 1);
+
+        if (isAndroid) {
+            window.location.replace(androidURL);
+        }
+        else if (isIOS) {
+            window.location.replace(iosURL);
+        }
+        else {
+            document.getElementById("message").innerHTML =
+                "Choose your device to download DART.";
+
+            document.getElementById("buttons").style.display = "block";
+        }
+    </script>
 
 </body>
 </html>
